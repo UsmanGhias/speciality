@@ -1,0 +1,54 @@
+name: Bug report
+description: Report a reproducible bug in the speciality module
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please do not include secrets, credentials, or customer data.
+  - type: input
+    id: odoo_version
+    attributes:
+      label: Odoo version
+      description: Example 18.0
+      placeholder: "18.0"
+    validations:
+      required: true
+  - type: input
+    id: module_version
+    attributes:
+      label: Module version
+      description: From __manifest__.py
+      placeholder: "18.0.1.0.0"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / stack traces
+      description: Redact secrets before pasting.
+    validations:
+      required: false

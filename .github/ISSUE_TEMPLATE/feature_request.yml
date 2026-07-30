@@ -1,0 +1,36 @@
+name: Feature request
+description: Suggest an improvement for the speciality module
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe a real need. Prefer small, reusable improvements over client-specific work.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope confirmation
+      options:
+        - label: This request keeps the module reusable and does not require embedding private client logic.
+          required: true
+        - label: I understand a license has not been declared yet.
+          required: true
