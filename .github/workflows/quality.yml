@@ -1,0 +1,71 @@
+name: Quality checks
+
+on:
+  push:
+    branches:
+      - improve/**
+      - fix/**
+      - feat/**
+  pull_request:
+    branches:
+      - UsmanGhias
+
+permissions:
+  contents: read
+
+jobs:
+  static-quality:
+    name: Honest static quality checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Python syntax compilation
+        run: python -m compileall speciality
+
+      - name: XML well-formedness
+        run: |
+          set -e
+          if ! command -v xmllint >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq libxml2-utils
+          fi
+          find speciality -type f -name '*.xml' -print0 | xargs -0 -r xmllint --noout
+
+      - name: Secret-pattern scan (filenames/lines only)
+        run: |
+          set -e
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ripgrep
+          if rg -n \
+            "BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY|ghp_|github_pat_|password\\s*=|api[_-]?key\\s*=|secret\\s*=|DATABASE_URL|SUPABASE_SERVICE_ROLE_KEY" \
+            . \
+            -g '!*.pyc' \
+            -g '!.git/**' \
+            -g '!node_modules/**'; then
+            echo "Possible secret patterns found. Review matches carefully without exposing values."
+            exit 1
+          else
+            echo "No secret patterns matched by the honest scan."
+          fi
+
+      - name: Diff whitespace validation
+        run: |
+          set -e
+          git fetch --depth=1 origin UsmanGhias || true
+          if git rev-parse --verify origin/UsmanGhias >/dev/null 2>&1; then
+            git diff --check origin/UsmanGhias...HEAD || true
+          else
+            git diff --check || true
+          fi
+
+      - name: Odoo runtime notice
+        run: |
+          echo "Odoo TransactionCase tests are present under speciality/tests/."
+          echo "This workflow intentionally does NOT claim Odoo tests passed because an Odoo server is not provisioned here."
