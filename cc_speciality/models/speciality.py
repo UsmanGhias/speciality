@@ -12,27 +12,27 @@ class Speciality(models.Model):
         string="Name",
         required=True,
         translate=True,
-        help="Display name of the speciality.",
+        help="Display name of the business speciality or skill qualification.",
     )
     code = fields.Char(
         string="Code",
         required=True,
-        help="Short unique technical code for the speciality.",
+        help="Short unique technical code for the speciality (e.g. ELEC-01, LAW-CORP).",
     )
     active = fields.Boolean(
         string="Active",
         default=True,
-        help="Uncheck to archive the speciality without deleting it.",
+        help="Uncheck to archive the speciality without deleting historical records.",
     )
     sequence = fields.Integer(
         string="Sequence",
         default=10,
-        help="Used to order specialities in lists.",
+        help="Order of display in lists and dropdowns.",
     )
     description = fields.Text(
         string="Description",
         translate=True,
-        help="Optional longer description of the speciality.",
+        help="Optional detailed scope or qualification criteria.",
     )
 
     _sql_constraints = [
@@ -70,3 +70,16 @@ class Speciality(models.Model):
         if "name" in vals and vals["name"]:
             vals["name"] = vals["name"].strip()
         return super().write(vals)
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    speciality_ids = fields.Many2many(
+        'speciality.speciality',
+        'partner_speciality_rel',
+        'partner_id',
+        'speciality_id',
+        string='Specialities',
+        help='Designate business specialities, industry qualifications, or trade expertise for this contact.'
+    )

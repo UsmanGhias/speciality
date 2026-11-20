@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Specialities & Skill Qualifications</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1e293b;
+            background-color: #f8fafc;
+            line-height: 1.6;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #090d16 0%, #1e1b4b 100%);
+            color: #ffffff;
+            padding: 60px 20px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+        }
+        .badge-odoo {
+            background-color: #8b5cf6;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            height: 100%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .feature-card h5 {
+            color: #0f172a;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .highlight-bar {
+            width: 40px;
+            height: 4px;
+            background-color: #8b5cf6;
+            border-radius: 2px;
+            margin-bottom: 16px;
+        }
+        .spec-table th {
+            width: 30%;
+            background-color: #f1f5f9;
+        }
+        .footer-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="container py-4">
+
+    <!-- Hero Section -->
+    <div class="hero-section text-center">
+        <span class="badge-odoo">Odoo 17 Community & Enterprise</span>
+        <h1 class="display-5 fw-bold mb-3">Business Specialities & Skill Qualifications</h1>
+        <p class="lead text-slate-300 max-w-2xl mx-auto mb-4" style="color: #cbd5e1;">
+            Define and maintain a structured directory of business specialities, trade certifications, and technical domains. Assign multiple specialities directly to your contacts and vendors.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <span class="badge bg-secondary px-3 py-2">Module: cc_speciality</span>
+            <span class="badge bg-primary px-3 py-2">License: OPL-1</span>
+        </div>
+    </div>
+
+    <!-- Overview -->
+    <div class="row mb-5">
+        <div class="col-lg-12">
+            <div class="card border-0 shadow-sm p-4">
+                <h3 class="fw-bold text-dark mb-3">Structured Skill & Qualification Directory</h3>
+                <p>
+                    When dealing with hundreds of contractors, suppliers, consultants, or professional partners, maintaining a standard categorization of who does what is critical. Generic tags often get duplicated or misspelled.
+                </p>
+                <p class="mb-0">
+                    The <strong>cc_speciality</strong> module provides an independent, clean registry of verified business specialities with unique alphanumeric codes, drag-and-drop sequence ordering, descriptions, and translation support. Contacts can be assigned multiple specialities, enabling quick searching and filtering across partner directories.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Features Grid -->
+    <h3 class="fw-bold text-dark mb-4">Core Capabilities</h3>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6">
+            <div class="feature-card">
+                <div class="highlight-bar"></div>
+                <h5>Centralized Speciality Catalog</h5>
+                <p class="text-muted">
+                    Maintain a controlled registry of specialities with unique technical codes, sequence priority, and full descriptive documentation.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="feature-card">
+                <div class="highlight-bar"></div>
+                <h5>Partner Expertise Tagging</h5>
+                <p class="text-muted">
+                    Assign specialities directly onto customer, vendor, or contractor records using interactive tags with full link navigation.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="feature-card">
+                <div class="highlight-bar"></div>
+                <h5>Search & Filter by Speciality</h5>
+                <p class="text-muted">
+                    Filter contacts by specific business qualifications or domain skills directly in the standard partner directory search view.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="feature-card">
+                <div class="highlight-bar"></div>
+                <h5>Safe Archiving & Translations</h5>
+                <p class="text-muted">
+                    Archive obsolete qualifications without breaking historical data or foreign key associations. Fully translatable for multi-lingual deployments.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technical Specifications -->
+    <h3 class="fw-bold text-dark mb-4">Technical Specifications</h3>
+    <div class="card border-0 shadow-sm p-4 mb-5">
+        <table class="table table-bordered spec-table mb-0">
+            <tbody>
+                <tr>
+                    <th>Target Version</th>
+                    <td>Odoo 17.0 (Community & Enterprise)</td>
+                </tr>
+                <tr>
+                    <th>Base Dependencies</th>
+                    <td><code>base</code> (Zero external modules required)</td>
+                </tr>
+                <tr>
+                    <th>Technical Namespace</th>
+                    <td><code>cc_speciality</code></td>
+                </tr>
+                <tr>
+                    <th>Models Created / Extended</th>
+                    <td><code>speciality.speciality</code>, <code>res.partner</code></td>
+                </tr>
+                <tr>
+                    <th>License</th>
+                    <td>Odoo Proprietary License v1.0 (OPL-1)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Support and Inquiries -->
+    <div class="footer-card">
+        <h4 class="fw-bold mb-2">Need Customization or Support?</h4>
+        <p class="text-muted mb-3">
+            Our engineering team provides dedicated support, data migration, and custom module development.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://usmanghias.co.uk" target="_blank" class="btn btn-primary px-4 py-2">Developer Portfolio</a>
+            <a href="mailto:support@codcrafters.org" class="btn btn-outline-secondary px-4 py-2">Contact Support</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

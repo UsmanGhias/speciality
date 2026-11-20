@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Partner Form View Extension -->
+    <record id="view_partner_form_inherit_speciality" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.speciality</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="speciality_ids"
+                       widget="many2many_tags"
+                       placeholder="Specialities &amp; Qualifications..."
+                       options="{'no_create_edit': False}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Partner Search View Extension -->
+    <record id="view_res_partner_filter_inherit_speciality" model="ir.ui.view">
+        <field name="name">res.partner.select.inherit.speciality</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="speciality_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

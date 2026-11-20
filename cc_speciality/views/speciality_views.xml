@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_speciality_speciality_list" model="ir.ui.view">
-        <field name="name">speciality.speciality.list</field>
+
+    <!-- Tree View -->
+    <record id="view_speciality_speciality_tree" model="ir.ui.view">
+        <field name="name">speciality.speciality.tree</field>
         <field name="model">speciality.speciality</field>
         <field name="arch" type="xml">
-            <list string="Specialities">
+            <tree string="Specialities">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="code"/>
-                <field name="active"/>
-            </list>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
         </field>
     </record>
 
+    <!-- Form View -->
     <record id="view_speciality_speciality_form" model="ir.ui.view">
         <field name="name">speciality.speciality.form</field>
         <field name="model">speciality.speciality</field>
         <field name="arch" type="xml">
             <form string="Speciality">
                 <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
                     <group>
                         <group>
                             <field name="name"/>
@@ -30,13 +34,14 @@
                         </group>
                     </group>
                     <group string="Description">
-                        <field name="description" nolabel="1" colspan="2"/>
+                        <field name="description" nolabel="1" colspan="2" placeholder="Detailed scope, qualification criteria, or certification guidelines..."/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
+    <!-- Search View -->
     <record id="view_speciality_speciality_search" model="ir.ui.view">
         <field name="name">speciality.speciality.search</field>
         <field name="model">speciality.speciality</field>
@@ -45,53 +50,39 @@
                 <field name="name"/>
                 <field name="code"/>
                 <field name="description"/>
-                <filter
-                    string="Archived"
-                    name="inactive"
-                    domain="[('active', '=', False)]"
-                />
                 <separator/>
-                <filter
-                    string="Active"
-                    name="active"
-                    domain="[('active', '=', True)]"
-                />
-                <group expand="0" string="Group By">
-                    <filter
-                        string="Active Status"
-                        name="group_active"
-                        context="{'group_by': 'active'}"
-                    />
-                </group>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
             </search>
         </field>
     </record>
 
+    <!-- Action -->
     <record id="action_speciality_speciality" model="ir.actions.act_window">
-        <field name="name">Specialities</field>
+        <field name="name">Business Specialities</field>
         <field name="res_model">speciality.speciality</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_speciality_speciality_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Create your first speciality
+                Define your first business speciality
             </p>
             <p>
-                Define reusable business specialities with a unique code, sequence, and description.
+                Create and organize reusable business qualifications, skills, and industry specialities to classify your partners, consultants, and teams.
             </p>
         </field>
     </record>
 
-    <menuitem
-        id="menu_speciality_root"
-        name="Specialities"
-        sequence="90"
-    />
-    <menuitem
-        id="menu_speciality_speciality"
-        name="Specialities"
-        parent="menu_speciality_root"
-        action="action_speciality_speciality"
-        sequence="10"
-    />
+    <!-- Menuitem -->
+    <menuitem id="menu_speciality_root"
+              name="Specialities"
+              sequence="85"
+              web_icon="cc_speciality,static/description/icon.png"/>
+
+    <menuitem id="menu_speciality_speciality"
+              name="All Specialities"
+              parent="menu_speciality_root"
+              action="action_speciality_speciality"
+              sequence="10"/>
+
 </odoo>
